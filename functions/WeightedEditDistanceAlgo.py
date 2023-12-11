@@ -28,9 +28,9 @@ class WeightedEditDistance:
         m = len(self.seq2)
         n = len(self.seq1)
 
-        if (abs(m - n) < 5):
+        if (abs(m-n)<5):        # Here I have considered only differences that is less than 5 because otherwise it is undoubtedly dissimilar
             dist = self.calculateDist(m, n)
-            score = 1 - (dist / max(m, n))
+            score = 1 - (dist/max(m, n))
         else:
             return None
         
