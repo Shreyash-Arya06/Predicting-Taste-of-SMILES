@@ -19,14 +19,12 @@ class Chromosome:
         self.fitness = 0.0      # Initializing the fitness of chromosome
 
 class Genetic:
-    def __init__(self, resultPath = 'resultData', resultCount = 1, mutation_threshold = 0.025, parent_threshold = 0.75, mutation_factor = 0.15, size_of_group = 27, max_generation = 5):
+    def __init__(self, mutation_threshold = 0.025, parent_threshold = 0.75, mutation_factor = 0.15, size_of_group = 27, max_generation = 5):
         self.mutation_threshold = mutation_threshold
         self.parent_threshold = parent_threshold
         self.mutation_factor = mutation_factor
         self.size_of_group = size_of_group
         self.max_generation = max_generation
-        self.resultPath = resultPath
-        self.resultCount = resultCount
         self.chromosomeList = []
 
     # Creating the population
@@ -39,10 +37,15 @@ class Genetic:
     def evaluateChromosome(self, chromosome):
         chromosome.fitness = fitnessFunc.calculateFitness(chromosome.genes[0], chromosome.genes[1], chromosome.genes[2])
         
-        if not os.path.isdir(self.resultPath):
-            os.mkdir(self.resultPath)
-        with open(os.path.join(self.resultPath, 'Weights' + str(self.resultCount) + '.txt'), 'a') as f:
-            f.write(f'cost: {np.round_(chromosome.genes, 4)}, fitness: {round(chromosome.fitness, 4)}\n')
+        result_path = 'Datasets/Ignored-datasets/scores/Weights.txt'
+        if os.path.exists(result_path):
+            append_write = 'a' # append if already exists
+        else:
+            append_write = 'w' # make a new file if not
+
+        file = open(result_path,append_write)
+        file.write(f'cost: {np.round_(chromosome.genes, 4)}, fitness: {round(chromosome.fitness, 4)}\n')
+        file.close()
 
     # Selecting a parent from the population
     def selectParent(self):
