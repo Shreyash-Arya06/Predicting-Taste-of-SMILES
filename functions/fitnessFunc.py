@@ -2,8 +2,7 @@ import pandas as pd
 import os
 from WeightedEditDistanceAlgo import WeightedEditDistance
 
-def calculateFitness(ins_weight = 1, del_weight = 1, subs_weight = 1):
-    path = 'Datasets/Ignored-datasets/train'
+def calculateFitness(path, ins_weight = 1, del_weight = 1, subs_weight = 1):
 
     final_scores = []
     for files in os.listdir(path):
