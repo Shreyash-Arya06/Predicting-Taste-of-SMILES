@@ -1,7 +1,9 @@
 import numpy as np
 import random
 import os
-import fitnessFunc
+
+from functions.fitnessFunc import calculateFitness
+
 
 class Chromosome:
     def __init__(self, limit = 1, size = 3, insert = None, delete = None, substitute = None):
@@ -19,8 +21,9 @@ class Chromosome:
         self.fitness = 0.0      # Initializing the fitness of chromosome
 
 class Genetic:
-    def __init__(self, data_path, mutation_threshold = 0.025, parent_threshold = 0.75, mutation_factor = 0.15, size_of_group = 10, max_generation = 5):
+    def __init__(self, data_path, count = 1, mutation_threshold = 0.025, parent_threshold = 0.75, mutation_factor = 0.15, size_of_group = 20, max_generation = 50):
         self.data_path = data_path
+        self.count = count
         self.mutation_threshold = mutation_threshold
         self.parent_threshold = parent_threshold
         self.mutation_factor = mutation_factor
@@ -36,7 +39,8 @@ class Genetic:
         
     # Evaluating the fitness of each chromosome
     def evaluateChromosome(self, chromosome):
-        chromosome.fitness = fitnessFunc.calculateFitness(self.data_path, chromosome.genes[0], chromosome.genes[1], chromosome.genes[2])
+        chromosome.fitness = calculateFitness(self.data_path, self.count, chromosome.genes[0], chromosome.genes[1], chromosome.genes[2])
+        self.count += 1
         
         result_path = 'Datasets/Ignored-datasets/scores/Weights.txt'
         if os.path.exists(result_path):

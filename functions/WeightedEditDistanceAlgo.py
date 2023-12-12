@@ -1,5 +1,5 @@
 class WeightedEditDistance:
-    def __init__(self, seq1, seq2, ins_weight = 1, del_weight = 1, subs_weight = 1):
+    def __init__(self, seq1, seq2, ins_weight = 0.1947, del_weight = 0.089, subs_weight = 0.9525):
         self.seq1 = seq1
         self.seq2 = seq2
         self.ins_weight = ins_weight
