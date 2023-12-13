@@ -27,19 +27,17 @@ def calculateFitness(path, turn, ins_weight = 1, del_weight = 1, subs_weight = 1
                 row.append(score)
 
             row_score = row_total/count
-            print(turn, end=' ')
             col_total += row_score
             row.append((row_score))
             new_data.append(row)
         
-        print()
+        print(turn)
         column = ['CSMILES']
         column.extend(CSmilesList)
         column.append('Scores')     # Completeing the column heading row
 
         final_row = ['' for i in range(len(CSmilesList) + 1)]
         overall_score = col_total/len(CSmilesList)
-        print('overall_score for ', files, ' = ', overall_score)
         final_row.append(overall_score)
         new_data.append(final_row)
 

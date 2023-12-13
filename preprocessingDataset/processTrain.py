@@ -42,4 +42,4 @@ new_data = preprocess(datas, new_data, 'False')
 
 df = pd.DataFrame(new_data, columns=['SMILES', 'Canonical SMILES', 'Bitter', 'Sweet'])
 df.drop_duplicates(subset=['Canonical SMILES'], inplace=True)
-df.to_csv('Datasets/mergedtest/ProcessedTrain.csv', index=False)
+df.to_csv('Datasets/Ignored-datasets/mergedtrain/ProcessedTrain.csv', index=False)
